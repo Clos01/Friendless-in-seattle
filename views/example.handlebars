@@ -1,5 +1,33 @@
 {{> nav/nav-block}}
 
+<section class="section">
+        <div class="field">
+            <div class="control">
+              <textarea class="textarea is-info" id="example-text" class="form-control" placeholder="Post something new..."></textarea>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button id="submit" class="button is-info is-light">Post</button>
+            </div>
+        </div>
+</section>
+
+<hr class="m-6 has-background-grey-lighter">
+
+<h4 class="has-text-info has-text-centered is-size-1">Chat</h4>
+        <ul id="example-list" class="list-group">
+          {{#each examples}}
+          <li data-id="{{this.id}}" class="list-group-item textarea is-primary">
+            <a href="example/{{this.id}}">{{this.text}}</a>
+            <button class="button is-danger is-rounded delete"></button>
+          </li>
+          {{/each}}
+        </ul>
+
+
+<!-- Old code is below-->
 <div id="home">
   <div class="container">
     <div class="row">
@@ -14,9 +42,9 @@
             <label for="example-description">Example Description</label>
             <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button  class="btn btn-primary float-right">Submit</button>
         </form>
-        <h4>Examples belong to this user:</h4>
+        <h4 class=>Examples belong to this user:</h4>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
