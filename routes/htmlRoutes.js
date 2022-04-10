@@ -30,6 +30,26 @@ module.exports = (db) => {
     }
   });
 
+  // router.get('/friends', (req, res) => {
+  //   if (req.isAuthenticated()) {
+  //     db.User.findOne({
+  //       where: {
+  //         id: req.session.passport.user.id
+  //       }
+  //     }).then(() => {
+  //       const user = {
+  //         userInfo: req.session.passport.user,
+  //         isloggedin: req.isAuthenticated()
+  //       };
+  //       // console.log(user);
+  //       res.render('friends', user);
+  //     });
+  //   } else {
+  //     res.redirect('/');
+  //   }
+  // });
+
+
   // Load dashboard page
   router.get('/', (req, res) => {
     if (req.isAuthenticated()) {

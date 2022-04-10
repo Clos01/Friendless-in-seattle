@@ -17,15 +17,17 @@
 <hr class="m-6 has-background-grey-lighter">
 
 <h4 class="has-text-info has-text-centered is-size-1">Chat</h4>
+        <section class="section">
         <ul id="example-list" class="list-group">
           {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item textarea is-primary">
+          <li data-id="{{this.id}}" class="list-group-item textarea is-info is-light">
             <a href="example/{{this.id}}">{{this.text}}</a>
             <button class="button is-danger is-rounded delete"></button>
           </li>
+          <br>
           {{/each}}
         </ul>
-
+</section>
 
 <!-- Old code is below-->
 <div id="home">
