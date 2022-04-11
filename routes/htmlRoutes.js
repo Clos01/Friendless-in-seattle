@@ -30,26 +30,6 @@ module.exports = (db) => {
     }
   });
 
-  // router.get('/friends', (req, res) => {
-  //   if (req.isAuthenticated()) {
-  //     db.User.findOne({
-  //       where: {
-  //         id: req.session.passport.user.id
-  //       }
-  //     }).then(() => {
-  //       const user = {
-  //         userInfo: req.session.passport.user,
-  //         isloggedin: req.isAuthenticated()
-  //       };
-  //       // console.log(user);
-  //       res.render('friends', user);
-  //     });
-  //   } else {
-  //     res.redirect('/');
-  //   }
-  // });
-
-
   // Load dashboard page
   router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
@@ -106,6 +86,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
   router.get('/friends', function (req, res) {
     if (req.isAuthenticated()) {
       db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
@@ -120,6 +101,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
+
   // Logout
   router.get('/logout', (req, res, next) => {
     req.logout();
