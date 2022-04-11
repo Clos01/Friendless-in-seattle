@@ -30,6 +30,36 @@ module.exports = (db) => {
     }
   });
 
+  // Load friends page
+  router.get('/friends', (req, res) => {
+    if (req.isAuthenticated()) {
+      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
+        res.render('friend', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          examples: dbFriends
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  // Load selected friend
+  router.get('/friends/:id', (req, res) => {
+    if (req.isAuthenticated()) {
+      db.Example.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbFriend) {
+        res.render('friend-detail', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          example: dbFriend
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
   // Load dashboard page
   router.get('/', (req, res) => {
     if (req.isAuthenticated()) {
