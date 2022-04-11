@@ -1,44 +1,21 @@
 <nav class="navbar is-spaced is-info" role="navigation" aria-label="main navigation">
-  <div class="navbar-menu is-active">
-    <div class="navbar-start">
-      <div class="navbar-item is-hidden-touch">
-      <a class="title is-4 has-text-white" href="/">Friendless in Seattle</a>
-      </div>
-      <div class="navbar-item is-hidden-desktop">
-        <a class="title is-4 has-text-info" href="/">Friendless in Seattle</a>
-      </div>
-  </div>
-  
-  <!-- Links -->
+
+        <div class="navbar-menu is-active">
+            <div class="navbar-start">
+                <div class="navbar-item is-hidden-touch">
+                    <p class="title is-4 has-text-white">Friendless in Seattle</p>
+                </div>
+                <div class="navbar-item is-hidden-desktop">
+                    <p class="title is-4 has-text-info">Friendless in Seattle</p>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" href="/example">Dashboard</a>
+                <a class="navbar-item" id="friends" href="/friends">Friends</a>
+                <a class="navbar-item" href="/profile">Profile</a>
+                <a class="navbar-item" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
 
 
-    {{!-- <li class="nav-item">
-      <a class="nav-link" href="/some-feature">Menu item here</a>
-    </li> --}}
-  
-    {{#if isloggedin}}
-      <li class="navbar-item">
-        <a class="has-text-white" href="/example">Dashboard</a>
-      </li>
-      <li class="navbar-item">
-        <a class="has-text-white" href="/friends" id="friends">Friends</a>
-      </li>
-      <li class="navbar-item">
-        <a class="has-text-white" href="/profile">Profile</a>
-      </li>
-      <li class="navbar-item">
-        <a class="has-text-white" href="/logout">Logout</a>
-      </li>
-    {{else}}
-      <li class="navbar-item">
-        <a class="has-text-white" href="/" id="login-modal">Login</a>
-      </li>
-      <li class="navbar-item">
-        <a class="has-text-white" href="/register" data-register={{register}}>Register</a>
-      </li>
-    {{/if}}
-  
-  </div>
-</nav>
-
-{{> modal/login-block}}
