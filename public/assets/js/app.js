@@ -110,6 +110,11 @@ $('#go-home').on('click', function (event) {
   window.location.href = '/';
 });
 
+$('#friends').on('click', function (event) {
+  event.preventDefault();
+  window.location.href = '/friends';
+});
+
 $('#login').on('click', function (event) {
   event.preventDefault();
 

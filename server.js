@@ -1,11 +1,11 @@
-require('dotenv').config();
+require('dotenv').config(); // npm package that loads env file
 const express = require('express');
 const exphbs = require('express-handlebars');
-const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
-const passport = require('passport');
-const moment = require('moment');
-const helmet = require('helmet');
+const cookieParser = require('cookie-parser'); // npm package that parses cookies attached to client request object
+const morgan = require('morgan'); // middleware that logs http requests and errors and simplifies them
+const passport = require('passport'); // authentication middleware 
+const moment = require('moment'); // date/time
+const helmet = require('helmet'); //node module that helps secure http headers returned by express
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./models');

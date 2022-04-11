@@ -70,10 +70,7 @@ const handleFormSubmit = function (event) {
     UserId: window.userId
   };
 
-  // if (!(example.text && example.description)) {
-  //   alert('You must enter an example text and description!');
-  //   return;
-  // }
+
 
   API.saveExample(example).then(function () {
     refreshExamples();
