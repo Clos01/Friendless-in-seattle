@@ -121,7 +121,7 @@ $('#login').on('click', function (event) {
   $.post('/api/login', user, (result) => {
     // console.log(result);
     if (result.loggedIn) {
-      $(document.location).attr('href', '/dashboard');
+      $(document.location).attr('href', '/example');
     } else {
       $('#login-err-msg').empty('').text(result.error);
       $('#user-info').modal('hide');
