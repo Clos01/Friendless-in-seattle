@@ -1,3 +1,5 @@
+// const avatar = require("random-avatar-generator");
+
 module.exports = (passport, db) => {
   return {
     register: (req, res) => {
@@ -10,7 +12,8 @@ module.exports = (passport, db) => {
           email: req.body.email,
           password: req.body.password,
           firstName: req.body.firstName,
-          lastName: req.body.lastName
+          lastName: req.body.lastName,
+          // avatar: avatar.generateRandomAvatar("avatar")
         };
 
         return db.User.create(newUser).then(() => {
