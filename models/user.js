@@ -25,6 +25,22 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    location: {
+      type: DataTypes.STRING
+    },
+    meetPreference: {
+      type: DataTypes.BOOLEAN
+    },
+    about: {
+      type: DataTypes.STRING
+    },
+    interest_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'Interest',
+        key: 'id'
+      }
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -45,6 +61,12 @@ module.exports = function (sequelize, DataTypes) {
   User.associate = function (models) {
     User.hasMany(models.Example, {
       onDelete: 'cascade'
+    });
+  };
+
+  User.associate = function (models) {
+    User.belongsTo(models.Interest, {
+      foreignKey: 'interest_id'
     });
   };
 

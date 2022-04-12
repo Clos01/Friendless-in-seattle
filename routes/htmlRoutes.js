@@ -6,7 +6,9 @@ module.exports = (db) => {
     if (req.isAuthenticated()) {
       res.redirect('/profile');
     } else {
-      res.render('register');
+      db.Interest.findAll({ raw: true }).then(function (dbInterests) {
+        res.render('register', { interests: dbInterests });
+      });
     }
   });
 
@@ -33,11 +35,11 @@ module.exports = (db) => {
   // Load friends page
   router.get('/friends', (req, res) => {
     if (req.isAuthenticated()) {
-      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
+      db.Friend.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
         res.render('friend', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
-          examples: dbFriends
+          friends: dbFriends
         });
       });
     } else {
@@ -48,11 +50,11 @@ module.exports = (db) => {
   // Load selected friend
   router.get('/friends/:id', (req, res) => {
     if (req.isAuthenticated()) {
-      db.Example.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbFriend) {
+      db.Friend.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbFriend) {
         res.render('friend-detail', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
-          example: dbFriend
+          friend: dbFriend
         });
       });
     } else {
