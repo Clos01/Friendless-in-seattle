@@ -26,7 +26,7 @@
                         <div class="field">
                             <label class="label" for="inputLocation">Location</label>
                             <div class="control">
-                                <input class="input" type="text" id="inputLocation" value="{{userInfo.Location}}" placeholder="Wilmington">
+                                <input class="input" type="text" id="inputLocation" value="{{userInfo.location}}" placeholder="Wilmington">
                             </div>
                         </div>
 
@@ -59,15 +59,10 @@
                         <div class="field is-narrow">
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select>
-                                        <option>Workout</option>
-                                        <option>Hiking</option>
-                                        <option>Book club</option>
-                                        <option>Eat and drink</option>
-                                        <option>Gaming</option>
-                                        <option>Beach</option>
-                                        <option>Movies</option>
-                                        <option>Live music</option>
+                                    <select id="interest_id">
+                                    {{#each interests as |interest|}}
+                                      <option value={{interest.id}}>{{interest.interest_name}}</option>
+                                    {{/each}}
                                     </select>
                                 </div>
                             </div>
@@ -80,8 +75,8 @@
                     <div class="field-body">
                         <div class="field is-narrow">
                             <div class="control">
-                                <label class="radio"><input type="radio" name="location"> Locally</label>
-                                <label class="radio"><input type="radio" name="location"> Virtually</label>
+                                <label class="radio"><input type="radio" name="meetPreference" value="locally"> Locally</label>
+                              <label class="radio"><input type="radio" name="meetPreference" value="virtually"> Virtually</label>
                             </div>
                         </div>
                     </div>
@@ -92,7 +87,7 @@
                         <div class="field">
                             <label class="label">About</label>
                             <div class="control">
-                                <textarea class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself"></textarea>
+                                <textarea id="inputAbout" class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself">{{userInfo.about}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -103,12 +98,12 @@
                         <div class="field is-grouped">
                             <div class="control">
                                 <button class="button is-info" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
-                                {{#unless userInfo.isAdmin}}
                             </div>
+                           {{#if userInfo.isAdmin}}
                             <div class="control">
                                 <button class="button is-info" type="submit" id="delete-user">Delete</button>
-                                {{/unless}}
                             </div>
+                            {{/if}}
                             <div class="control">
                                 <button class="button is-info" type="submit" id="view-user" data-id="{{userInfo.id}}">Refresh</button>
                             </div>

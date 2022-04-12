@@ -6,7 +6,9 @@ module.exports = (db) => {
     if (req.isAuthenticated()) {
       res.redirect('/profile');
     } else {
-      res.render('register');
+      db.Interest.findAll({ raw: true }).then(function (dbInterests) {
+        res.render('register', { interests: dbInterests });
+      });
     }
   });
 
@@ -18,12 +20,44 @@ module.exports = (db) => {
           id: req.session.passport.user.id
         }
       }).then(() => {
-        const user = {
+        db.Interest.findAll({ raw: true }).then(function (dbInterests) {
+          const profile = {
+            userInfo: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            interests: dbInterests
+          };
+          res.render('profile', profile);
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  // Load friends page
+  router.get('/friends', (req, res) => {
+    if (req.isAuthenticated()) {
+      db.Friend.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
+        res.render('friends', {
           userInfo: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        // console.log(user);
-        res.render('profile', user);
+          isloggedin: req.isAuthenticated(),
+          friends: dbFriends
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
+  // Load selected friend
+  router.get('/friends/:id', (req, res) => {
+    if (req.isAuthenticated()) {
+      db.Friend.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbFriend) {
+        res.render('friend-detail', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          friend: dbFriend
+        });
       });
     } else {
       res.redirect('/');

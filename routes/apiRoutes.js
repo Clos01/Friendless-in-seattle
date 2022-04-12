@@ -4,6 +4,7 @@ const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')(db);
+  const InterestController = require('../controllers/interestController')(db);
 
   // Authentication
   router.post('/register', AuthController.register);
@@ -18,5 +19,11 @@ module.exports = (passport, db) => {
   router.post('/examples', AppController.createExample);
   router.delete('/examples/:id', AppController.deleteExample);
 
+  // Interests
+  router.get('/interests', InterestController.getAllInterests);
+  router.get('/interests/:id', InterestController.getInterest);
+  router.post('/interests', InterestController.createInterest);
+  router.put('/interests/:id', InterestController.updateInterest);
+  router.delete('/interests/:id', InterestController.deleteInterest);
   return router;
 };
