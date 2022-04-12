@@ -13,10 +13,18 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Interest.associate = function (models) {
-    Interest.hasMany(models.User, {
-      foreignKey: 'interest_id'
+    Interest.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
+
+  // Interest.associate = function (models) {
+  //   Interest.hasMany(models.User, {
+  //     foreignKey: 'interest_id'
+  //   });
+  // };
 
   Interest.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());

@@ -12,9 +12,6 @@ module.exports = function (sequelize, DataTypes) {
     firstName: {
       type: DataTypes.STRING
     },
-    lastName: {
-      type: DataTypes.STRING
-    },
     about: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,19 +24,27 @@ module.exports = function (sequelize, DataTypes) {
         msg: 'User already exists'
       }
     },
+    meetPreference: {
+      type: DataTypes.STRING
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false
     },
     location: {
       type: DataTypes.STRING,
-      allowNull:false
     },
-    
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    }
+    },
+    interest_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'Interest',
+        key: 'id'
+      }
+    },
   }, {
     timestamps: true,
     hooks: {
