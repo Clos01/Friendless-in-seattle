@@ -8,10 +8,10 @@ $('#add-user').on('click', function (event) {
     location: $('#inputLocation').val().trim(),
     meetPreference: $('input[type=radio][name=meetPreference]:checked').val(),
     about: $('#inputAbout').val().trim(),
-    interest_id: $('#interest_id').val()
+    interest_id: parseInt($('#interest_id').val())
   };
 
-  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0 && newAccount.interest_id.length > 0) {
+  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
     $.ajax({
       type: 'POST',
       url: '/api/register',
@@ -38,13 +38,13 @@ $('#update-user').on('click', function (event) {
     location: $('#inputLocation').val().trim(),
     meetPreference: $('#inputMeetPreference').val().trim(),
     about: $('#inputAbout').val().trim(),
-    interest_id: $('#interest_id').val()
+    interest_id: parseInt($('#interest_id').val())
   };
   $('#err-msg').empty('');
   // $('#change-user-modal').modal('show');
   console.log(changeUser);
 
-  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0 && changeUser.interest_id.length > 0) {
+  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
       url: `/api/user/${id}`,
