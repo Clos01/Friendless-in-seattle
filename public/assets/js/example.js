@@ -66,11 +66,18 @@ const handleFormSubmit = function (event) {
 
   const example = {
     text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim(),
+    // description: $exampleDescription.val().trim(),
     UserId: window.userId
   };
 
+<<<<<<< HEAD
   
+=======
+  // if (!(example.text && example.description)) {
+  //   alert('You must enter an example text and description!');
+  //   return;
+  // }
+>>>>>>> ericc
 
   API.saveExample(example).then(function () {
     refreshExamples();

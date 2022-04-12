@@ -62,25 +62,39 @@ module.exports = (db) => {
       res.render('dashboard');
     }
   });
-
+  // Load friends page
+  router.get('/friends', function (req, res) {
+    if (req.isAuthenticated()) {
+      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
+        res.render('friends', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          msg: 'Welcome!',
+          examples: dbExamples
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
   // Load dashboard page
-  router.get('/dashboard', (req, res) => {
+  router.get('/example', (req, res) => {
     if (req.isAuthenticated()) {
       const user = {
         user: req.session.passport.user,
         isloggedin: req.isAuthenticated()
       };
-      res.render('dashboard', user);
+      res.render('example', user);
     } else {
-      res.render('dashboard');
+      res.render('example');
     }
   });
 
   // Load example index page
-  router.get('/example', function (req, res) {
+  router.get('/dashboard', function (req, res) {
     if (req.isAuthenticated()) {
       db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
-        res.render('example', {
+        res.render('dashboard', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           msg: 'Welcome!',
@@ -93,7 +107,7 @@ module.exports = (db) => {
   });
 
   // Load example page and pass in an example by id
-  router.get('/example/:id', function (req, res) {
+  router.get('/dashboard/:id', function (req, res) {
     if (req.isAuthenticated()) {
       db.Example.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbExample) {
         res.render('example-detail', {
