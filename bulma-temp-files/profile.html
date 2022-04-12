@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Friendless in Seattle</title>
+    <link rel="icon" type="image/x-icon" href="/images/f-logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <nav class="navbar is-spaced is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu is-active">
+            <div class="navbar-start">
+                <div class="navbar-item is-hidden-touch">
+                    <p class="title is-4 has-text-white">Friendless in Seattle</p>
+                </div>
+                <div class="navbar-item is-hidden-desktop">
+                    <p class="title is-4 has-text-info">Friendless in Seattle</p>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item">Dashboard</a>
+                <a class="navbar-item">Friends</a>
+                <a class="navbar-item">Profile</a>
+                <a class="navbar-item">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="columns mt-6">
+
+            <div class="column is-4">
+                <figure class="image is-1by1">
+                    <img src="/images/avatar-1.jpg">
+                </figure>
+                <p class="has-text-centered is-size-6 m-4">Generate new avatar</p>
+            </div>
+
+            <div class="column is-8">
+                <form>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="">
+                                </div>
+                            </div>
+    
+                            <div class="field">
+                                <label class="label">Location</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="">
+                                </div>
+                            </div>
+    
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field is horizontal">
+                        <label class="label">Choose an example activity that you like to do with friends</label>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select>
+                                            <option>Workout</option>
+                                            <option>Hiking</option>
+                                            <option>Book club</option>
+                                            <option>Eat and drink</option>
+                                            <option>Gaming</option>
+                                            <option>Beach</option>
+                                            <option>Movies</option>
+                                            <option>Live music</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is horizontal">
+                        <label class="label">Where do you want to meet friends?</label>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <label class="radio"><input type="radio" name="location"> Locally</label>
+                                    <label class="radio"><input type="radio" name="location"> Virtually</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label">About</label>
+                                <div class="control">
+                                    <textarea class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-info">Update</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-info">Delete</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-info">Refresh</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

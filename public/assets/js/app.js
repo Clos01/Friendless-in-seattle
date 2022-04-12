@@ -58,11 +58,13 @@ $('#update-user').on('click', function (event) {
 $('#delete-user').on('click', function (event) {
   event.preventDefault();
   $('#err-msg').empty('');
-  $('#delete-user-modal').modal('show');
+  $('#delete-user-modal').addClass('is-active');
 });
 
 $('#confirm-delete').on('click', function (event) {
   event.preventDefault();
+
+  $('#delete-user-modal').removeClass('is-active');
 
   const id = $(this).data('id');
 
@@ -121,7 +123,7 @@ $('#login').on('click', function (event) {
   $.post('/api/login', user, (result) => {
     // console.log(result);
     if (result.loggedIn) {
-      $(document.location).attr('href', '/dashboard');
+      $(document.location).attr('href', '/example');
     } else {
       $('#login-err-msg').empty('').text(result.error);
       $('#user-info').modal('hide');

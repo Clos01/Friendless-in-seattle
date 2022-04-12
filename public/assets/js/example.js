@@ -46,7 +46,7 @@ const refreshExamples = function () {
         .append($a);
 
       const $button = $('<button>')
-        .addClass('btn btn-danger float-right delete')
+        .addClass('btn float-right delete')
         .text('ｘ');
 
       $li.append($button);
@@ -66,14 +66,14 @@ const handleFormSubmit = function (event) {
 
   const example = {
     text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim(),
+    // description: $exampleDescription.val().trim(),
     UserId: window.userId
   };
 
-  if (!(example.text && example.description)) {
-    alert('You must enter an example text and description!');
-    return;
-  }
+  // if (!(example.text && example.description)) {
+  //   alert('You must enter an example text and description!');
+  //   return;
+  // }
 
   API.saveExample(example).then(function () {
     refreshExamples();
