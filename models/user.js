@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const sequelize = require('../config/config');
+const { Model, DataTypes } = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define('User', {
@@ -13,6 +15,10 @@ module.exports = function (sequelize, DataTypes) {
     lastName: {
       type: DataTypes.STRING
     },
+    about: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,6 +31,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    location: {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -43,7 +54,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   User.associate = function (models) {
-    User.hasMany(models.Example, {
+    User.hasMany(models.Posts, {
       onDelete: 'cascade'
     });
   };
