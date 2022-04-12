@@ -44,6 +44,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   }, {
     timestamps: true,
+    underscored: true,
     hooks: {
       beforeValidate: function (user) {
         if (user.changed('password')) {
@@ -65,6 +66,20 @@ module.exports = function (sequelize, DataTypes) {
     User.belongsTo(models.Interest, {
       foreignKey: 'interest_id',
       onDelete: 'cascade'
+    });
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Message, {
+      as: 'sentMessages',
+      foreignKey: 'sender_id'
+    });
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Message, {
+      as: 'receivedMessages',
+      foreignKey: 'receiver_id'
     });
   };
 

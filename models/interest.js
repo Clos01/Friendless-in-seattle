@@ -10,7 +10,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     }
-  });
+  },
+  {
+    timestamps: false
+  }
+  );
 
   Interest.associate = function (models) {
     Interest.hasMany(models.User, {
