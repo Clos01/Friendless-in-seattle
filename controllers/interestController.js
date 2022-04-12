@@ -8,7 +8,6 @@ module.exports = function (db) {
             attributes: [
               'id',
               'firstName',
-              'lastName',
               'email',
               'location',
               'meetPreference',
@@ -34,7 +33,6 @@ module.exports = function (db) {
             attributes: [
               'id',
               'firstName',
-              'lastName',
               'email',
               'location',
               'meetPreference',
