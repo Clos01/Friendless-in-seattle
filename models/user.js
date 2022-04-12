@@ -10,9 +10,6 @@ module.exports = function (sequelize, DataTypes) {
     firstName: {
       type: DataTypes.STRING
     },
-    lastName: {
-      type: DataTypes.STRING
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -29,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     meetPreference: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.STRING
     },
     about: {
       type: DataTypes.STRING
@@ -66,7 +63,8 @@ module.exports = function (sequelize, DataTypes) {
 
   User.associate = function (models) {
     User.belongsTo(models.Interest, {
-      foreignKey: 'interest_id'
+      foreignKey: 'interest_id',
+      onDelete: 'cascade'
     });
   };
 

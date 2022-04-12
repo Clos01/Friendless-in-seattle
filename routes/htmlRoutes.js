@@ -36,7 +36,7 @@ module.exports = (db) => {
   router.get('/friends', (req, res) => {
     if (req.isAuthenticated()) {
       db.Friend.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
-        res.render('friend', {
+        res.render('friends', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           friends: dbFriends
