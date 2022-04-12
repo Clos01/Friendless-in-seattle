@@ -1,35 +1,20 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="/">
-    AppName
-  </a>
-  
-  <!-- Links -->
-  <ul class="nav navbar-nav ml-auto">
+<nav class="navbar is-spaced is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-menu is-active">
+            <div class="navbar-start">
+                <div class="navbar-item is-hidden-touch">
+                    <p class="title is-4 has-text-white">Friendless in Seattle</p>
+                </div>
+                <div class="navbar-item is-hidden-desktop">
+                    <p class="title is-4 has-text-info">Friendless in Seattle</p>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" href="/example">Dashboard</a>
+                <a class="navbar-item" id="friends" href="/friends">Friends</a>
+                <a class="navbar-item" href="/profile">Profile</a>
+                <a class="navbar-item" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
 
-    {{!-- <li class="nav-item">
-      <a class="nav-link" href="/some-feature">Menu item here</a>
-    </li> --}}
-
-    {{#if isloggedin}}
-      <li class="nav-item">
-        <a class="nav-link" href="/example">Example page</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">My Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-    {{else}}
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="login-modal">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register" data-register={{register}}>Register</a>
-      </li>
-    {{/if}}
-  </ul>
-</nav>
-
-{{> modal/login-block}}
+{{!-- {{> modal/login-block}} --}}
