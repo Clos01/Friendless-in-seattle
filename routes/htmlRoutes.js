@@ -20,12 +20,14 @@ module.exports = (db) => {
           id: req.session.passport.user.id
         }
       }).then(() => {
-        const user = {
-          userInfo: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
-        };
-        // console.log(user);
-        res.render('profile', user);
+        db.Interest.findAll({ raw: true }).then(function (dbInterests) {
+          const profile = {
+            userInfo: req.session.passport.user,
+            isloggedin: req.isAuthenticated(),
+            interests: dbInterests
+          };
+          res.render('profile', profile);
+        });
       });
     } else {
       res.redirect('/');
