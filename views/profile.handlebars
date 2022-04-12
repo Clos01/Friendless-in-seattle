@@ -118,46 +118,27 @@
 
             </form>
         </div>
-
-
-
     </div>
-
 </section>
 
-
-
-{{!-- Still needs work  --}}
-
-  <div class="modal" id="delete-user-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Re-Enter Credentials to delete user</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <div class="modal-body">
-          <h3 id="err-msg"></h3>
-          <form>
-            <div class="form-group">
-              <label for="userEmail">Email:</label>
-              <input type="text" class="form-control" id="userEmail">
+<div class="modal" id="delete-user-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Confirm Delete</p>
+        </header>
+        <section class="modal-card-body">
+            <p class="mb-2">Re-Enter Credent to Delete User</p>
+            <div class="control">
+                <input class="input mb-2" type="text" id="userEmail" placeholder="Email">
             </div>
-            <div class="form-group">
-              <label for="userPassword">Password:</label>
-              <input type="password" class="form-control" id="userPassword">
+            <div class="control">
+                <input class="input" type="password" id="userPassword" placeholder="Password">
             </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button id="confirm-delete" type="button" data-id="{{userInfo.id}}" class="btn btn-primary">Confirm Delete</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
-        </div>
-      </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-danger" id="confirm-delete" type="button" data-id="{{userInfo.id}}">Confirm Delete</button>
+            <button class="button is-info" type="button" data-dismiss="modal">Nah, I'll Stay</button>
+        </footer>
     </div>
-  </div>
 </div>

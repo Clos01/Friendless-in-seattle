@@ -58,11 +58,13 @@ $('#update-user').on('click', function (event) {
 $('#delete-user').on('click', function (event) {
   event.preventDefault();
   $('#err-msg').empty('');
-  $('#delete-user-modal').modal('show');
+  $('#delete-user-modal').addClass('is-active');
 });
 
 $('#confirm-delete').on('click', function (event) {
   event.preventDefault();
+
+  $('#delete-user-modal').removeClass('is-active');
 
   const id = $(this).data('id');
 
