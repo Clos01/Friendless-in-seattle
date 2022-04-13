@@ -7,7 +7,9 @@
             <figure class="image is-1by1">
                 <img src="/assets/images/avatar-1.jpg">
             </figure>
-            <p class="has-text-centered is-size-6 m-4">Generate new avatar</p>
+            <div class="buttons is-centered">
+              <button class="button is-info is-light is-outlined is-small mt-4" type="submit" id="avatar">Generate new avatar</button> 
+          </div>
         </div>
 
         <div class="column is-8">
@@ -102,15 +104,15 @@
                     <div class="field-body">
                         <div class="field is-grouped">
                             <div class="control">
-                                <button class="button is-info" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
+                                <button class="button is-primary is-light is-outlined" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
                                 {{#unless userInfo.isAdmin}}
                             </div>
                             <div class="control">
-                                <button class="button is-info" type="submit" id="delete-user">Delete</button>
+                                <button class="button is-danger is-light is-outlined" type="submit" id="delete-user">Delete</button>
                                 {{/unless}}
                             </div>
                             <div class="control">
-                                <button class="button is-info" type="submit" id="view-user" data-id="{{userInfo.id}}">Refresh</button>
+                                <button class="button is-warning is-light is-outlined" type="submit" id="view-user" data-id="{{userInfo.id}}">Refresh</button>
                             </div>
                         </div>
                     </div>
@@ -138,7 +140,7 @@
         </section>
         <footer class="modal-card-foot">
             <button class="button is-danger" id="confirm-delete" type="button" data-id="{{userInfo.id}}">Confirm Delete</button>
-            <button class="button is-info" type="button" data-dismiss="modal">Nah, I'll Stay</button>
+            <button class="button is-primary" type="button" data-dismiss="modal">Nah, I'll Stay</button>
         </footer>
     </div>
 </div>
