@@ -50,9 +50,16 @@ TP=mysql_password
   ## Contributors
   Carlos, Eric, Leigh, Lyndsey, and Sam
   ## Questions? 
+  Carlos's Email - 
+  <br>
   Eric's Email - iwmwargin@gmail.com
   <br>
-
+  Leigh's Email - 
+  <br>
+  Lyndsey's Email - 
+  <br>
+  Sam's Email - 
+  <br>
   ## Github
 ||
 [Carlos's Github](https://github.com/Clos01) ||
