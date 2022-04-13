@@ -26,4 +26,10 @@ module.exports = (passport, db) => {
   router.put('/interests/:id', InterestController.updateInterest);
   router.delete('/interests/:id', InterestController.deleteInterest);
   return router;
+
+  // Messages
+  router.get('/messages')
+  router.get('/messages/:id')
+  router.post('/messages')
+  router.delete('/messages/:id')
 };

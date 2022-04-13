@@ -5,41 +5,32 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    receiver_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User',
+        model: 'Users',
         key: 'id'
       }
     },
-    sender_id: {
+    conversation_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User',
+        model: 'Conversations',
         key: 'id'
       }
     },
     message: {
       type: DataTypes.TEXT
     }
-  },
-  {
-    underscored: true
   }
   );
 
   Message.associate = function (models) {
-    Message.belongsTo(models.User, {
-      as: 'sender',
-      foreignKey: 'sender_id'
-    });
+    Message.belongsTo(models.Conversation);
   };
 
   Message.associate = function (models) {
-    Message.belongsTo(models.User, {
-      as: 'receiver',
-      foreignKey: 'receiver_id'
-    });
+    Message.belongsTo(models.User);
   };
 
   Message.prototype.toJSON = function () {

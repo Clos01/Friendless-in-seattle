@@ -70,17 +70,11 @@ module.exports = function (sequelize, DataTypes) {
   };
 
   User.associate = function (models) {
-    User.hasMany(models.Message, {
-      as: 'sentMessages',
-      foreignKey: 'sender_id'
-    });
+    User.hasMany(models.userToConversation);
   };
 
   User.associate = function (models) {
-    User.hasMany(models.Message, {
-      as: 'receivedMessages',
-      foreignKey: 'receiver_id'
-    });
+    User.hasMany(models.Message);
   };
 
   // This will check if an unhashed password can be compared to the hashed password stored in our database
