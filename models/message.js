@@ -42,12 +42,6 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
 
-  // Message.associate = function (models) {
-  //   Message.belongsTo(models.Friend, {
-  //     foreignKey: 'friend_id'
-  //   });
-  // };
-
   Message.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     return values;
