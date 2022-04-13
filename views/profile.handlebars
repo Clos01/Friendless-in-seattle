@@ -1,46 +1,128 @@
 {{> nav/nav-block user=true register=false}}
 
-<div class="container">
-  <header align="center" class="header-wrap">
-    <h3>View or update your user</h3>
-    <div class="userId">
-      {{!-- <h3>Welcome, {{userInfo.firstName}}</h3> --}}
-      {{!-- <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5> --}}
-    </div>
-    <h3 id="update-err-msg"></h3>
-  </header>
+<section class="section">
+    <div class="columns mt-6">
 
-  <form id="user-form">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputFirst">First Name</label>
-        <input type="text" class="form-control" id="inputFirst" value="{{userInfo.firstName}}" placeholder="John">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputLast">Last Name</label>
-        <input type="text" class="form-control" id="inputLast" value="{{userInfo.lastName}}" placeholder="Doe">
-      </div>
+        <div class="column is-4">
+            <figure class="image is-1by1">
+                <img src="/assets/images/avatar-1.jpg">
+            </figure>
+            <p class="has-text-centered is-size-6 m-4">Generate new avatar</p>
+        </div>
+
+        <div class="column is-8">
+            <form id="user-form">
+                
+                <div class="field is-horizontal">
+                    <div class="field-body">
+
+                        <div class="field">
+                            <label class="label" for="inputFirst">Name</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputFirst" value="{{userInfo.firstName}}" placeholder="John">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="inputLocation">Location</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputLocation" value="{{userInfo.location}}" placeholder="Wilmington">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+
+                        <div class="field">
+                            <label class="label" for="inputEmail">Email</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputEmail" value="{{userInfo.email}}">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="inputPassword">Password</label>
+                            <div class="control">
+                                <input class="input" type="password" id="inputPassword" value="{{userInfo.password}}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="field is horizontal">
+                    <label class="label">Choose an example activity that you like to do with friends</label>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="interest_id">
+                                    {{#each interests as |interest|}}
+                                      <option value={{interest.id}}>{{interest.interest_name}}</option>
+                                    {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is horizontal">
+                    <label class="label">Where do you want to meet friends?</label>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <label class="radio"><input type="radio" name="meetPreference" value="locally"> Locally</label>
+                              <label class="radio"><input type="radio" name="meetPreference" value="virtually"> Virtually</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">About</label>
+                            <div class="control">
+                                <textarea id="inputAbout" class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself">{{userInfo.about}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-info" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
+                            </div>
+                           {{#if userInfo.isAdmin}}
+                            <div class="control">
+                                <button class="button is-info" type="submit" id="delete-user">Delete</button>
+                            </div>
+                            {{/if}}
+                            <div class="control">
+                                <button class="button is-info" type="submit" id="view-user" data-id="{{userInfo.id}}">Refresh</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Email</label>
-        <input type="text" class="form-control" id="inputEmail" value="{{userInfo.email}}">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" value="{{userInfo.password}}">
-      </div>
-    </div>
+</section>
 
-    <div>
-      <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-primary">Update</button>
-      {{#unless userInfo.isAdmin}}
-        <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
-      {{/unless}}
-      <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-primary">Refresh</button>
-    </div>
-  </form>
+
+
+{{!-- Still needs work  --}}
 
   <div class="modal" id="delete-user-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

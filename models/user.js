@@ -1,6 +1,4 @@
 const bcrypt = require('bcrypt');
-const sequelize = require('../config/config');
-const { Model, DataTypes } = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define('User', {
@@ -11,13 +9,6 @@ module.exports = function (sequelize, DataTypes) {
     },
     firstName: {
       type: DataTypes.STRING
-    },
-    lastName: {
-      type: DataTypes.STRING
-    },
-    about: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -32,16 +23,28 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
     location: {
-      type: DataTypes.STRING,
-      allowNull:false
+      type: DataTypes.STRING
     },
-    
+    meetPreference: {
+      type: DataTypes.STRING
+    },
+    about: {
+      type: DataTypes.STRING
+    },
+    interest_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'Interest',
+        key: 'id'
+      }
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   }, {
     timestamps: true,
+    underscored: true,
     hooks: {
       beforeValidate: function (user) {
         if (user.changed('password')) {
@@ -57,6 +60,21 @@ module.exports = function (sequelize, DataTypes) {
     User.hasMany(models.Posts, {
       onDelete: 'cascade'
     });
+  };
+
+  User.associate = function (models) {
+    User.belongsTo(models.Interest, {
+      foreignKey: 'interest_id',
+      onDelete: 'cascade'
+    });
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.userToConversation);
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Message);
   };
 
   // This will check if an unhashed password can be compared to the hashed password stored in our database
