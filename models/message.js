@@ -3,24 +3,15 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Users',
-        key: 'id'
-      }
-    },
-    conversation_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Conversations',
-        key: 'id'
-      }
-    },
+    // currentChatReceiverId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false
+    // },
     message: {
-      type: DataTypes.TEXT
+      type: DataTypes.STRING
     }
   }
   );

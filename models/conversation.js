@@ -3,13 +3,16 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: false
     },
     users: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     }
-  });
+  }
+  );
 
   Conversation.associate = function (models) {
     Conversation.hasMany(models.UserToConversation);

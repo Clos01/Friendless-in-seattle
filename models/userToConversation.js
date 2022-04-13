@@ -3,24 +3,28 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
-    },
-    conversation_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Conversations',
-        key: 'id'
-      }
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id'
-      }
+      primaryKey: true,
+      allowNull: false
     }
+    // conversation_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'Conversations',
+    //     key: 'id'
+    //   }
+    // },
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'Users',
+    //     key: 'id'
+    //   }
+    // }
+  },
+  {
+    timeStamps: false
   });
 
   UserToConversation.associate = function (models) {

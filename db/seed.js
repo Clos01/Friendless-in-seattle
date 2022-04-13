@@ -22,5 +22,13 @@ module.exports = (db) => {
   });
   db.Interest.create({
     interest_name: 'Working Out'
+  }).then(() => {
+    db.Interest.create({
+      interest_name: 'Hiking'
+    }).then(() => {
+      db.Interest.create({
+        interest_name: 'Swimming'
+      });
+    });
   });
 };

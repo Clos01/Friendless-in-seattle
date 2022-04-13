@@ -5,6 +5,8 @@ module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')(db);
   const InterestController = require('../controllers/interestController')(db);
+  const ConversationController = require('../controllers/conversationController')(db);
+  const MessageController = require('../controllers/messageController')(db);
 
   // Authentication
   router.post('/register', AuthController.register);
@@ -25,11 +27,18 @@ module.exports = (passport, db) => {
   router.post('/interests', InterestController.createInterest);
   router.put('/interests/:id', InterestController.updateInterest);
   router.delete('/interests/:id', InterestController.deleteInterest);
-  return router;
+
+  // Conversations
+  router.get('/conversations');
+  router.get('/conversations/:id', ConversationController.getConversationsbyId);
+  router.post('/conversations', ConversationController.createConversation);
+  router.delete('/conversations/:id');
 
   // Messages
-  router.get('/messages')
-  router.get('/messages/:id')
-  router.post('/messages')
-  router.delete('/messages/:id')
+  router.get('/messages', MessageController.getAllMessages);
+  router.get('/messages/:id');
+  router.post('/messages');
+  router.delete('/messages/:id');
+
+  return router;
 };
