@@ -21,9 +21,12 @@ $('#add-user').on('click', function (event) {
     $('#create-err-msg').empty('').text('**Please fill out entire form**');
   }
 });
+
 $('#update-user').on('click', function (event) {
   event.preventDefault();
+
   const id = $(this).data('id');
+
   // capture All changes
   const changeUser = {
     firstName: $('#inputFirst').val().trim(),
@@ -35,8 +38,9 @@ $('#update-user').on('click', function (event) {
     interest_id: parseInt($('#interest_id').val())
   };
   $('#err-msg').empty('');
-  $('#change-user-modal').modal('show');
+  // $('#change-user-modal').modal('show');
   console.log(changeUser);
+
   if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
@@ -50,6 +54,93 @@ $('#update-user').on('click', function (event) {
   } else {
     console.log('**Please fill out entire form**');
     $('#update-err-msg').empty('').text('**Please fill out entire form**');
+  }
+});
+
+// Make New Convo or redirect to existing convo
+// eslint-disable-next-line no-unused-vars
+const messageFriend = async (event, id) => {
+  event.preventDefault();
+
+  const userId = $('#your-user-id').val();
+  const Convo = {
+    users: `${userId},${id}`
+  };
+
+  await $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    if (response.length === 0) {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
+
+  $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    const exists = [];
+    for (let i = 0; i < response.length; i++) {
+      const reverseAllUsers = response[i].users.split('').reverse().join('');
+
+      if (response[i].users === Convo.users) {
+        exists.push('true');
+      } else if (reverseAllUsers === Convo.users) {
+        exists.push('trueReverse');
+      } else {
+        exists.push('false');
+      }
+    }
+    const doesExist = exists.includes('true');
+    const existsIndex = exists.indexOf('true');
+    const doesExistReverse = exists.includes('trueReverse');
+    const existsReverseIndex = exists.indexOf('trueReverse');
+
+    if (doesExistReverse) {
+      const ConversationId = response[existsReverseIndex].id;
+      window.location.href = `/chat/${ConversationId}`;
+    } else if (doesExist) {
+      const ConversationId = response[existsIndex].id;
+      window.location.href = `/chat/${ConversationId}`;
+    } else {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
+};
+
+// Create chat message
+$('#submit-message').on('click', function (event) {
+  event.preventDefault();
+  const message = $('#message-content').val();
+  const ConversationId = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+
+  const messageData = {
+    message,
+    ConversationId
+  };
+
+  if (message) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/messages',
+      data: messageData
+    });
+    $('#message-content').val('');
   }
 });
 // DELETE   ***************************************************
