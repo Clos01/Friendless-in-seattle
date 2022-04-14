@@ -54,7 +54,7 @@ TP=mysql_password
   <br>
   Eric's Email - iwmwargin@gmail.com
   <br>
-  Leigh's Email - 
+  Leigh's Email - leigh.pfeiffer@gmail.com
   <br>
   Lyndsey's Email - 
   <br>
