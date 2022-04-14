@@ -31,4 +31,7 @@ module.exports = (db) => {
       });
     });
   });
+  db.Conversation.create({
+    users: '1,2'
+  });
 };
