@@ -14,7 +14,7 @@ $('#add-user').on('click', function (event) {
   if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
     $.ajax({
       type: 'POST',
-      url: '/register',
+      url: '/api/register',
       data: newAccount
     }).then(() => {
       window.location.href = '/';
