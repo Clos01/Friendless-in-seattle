@@ -12,10 +12,8 @@
                     <figure class="image is-1by1 mb-4">
                         <img  class="is-rounded" src="images/avatar-2.png" alt="Placeholder image">
                     </figure>
-                    <form onclick="messageFriend(event,this.submitted)" class="has-text-centered has-text-weight-semibold">
-                        Message:
-                        <input class="button is-fullwidth is-info has-text-info" type="submit" onclick="this.form.submitted=this.value;" value="{{friend.id}}"></input>
-                    </form>
+                    
+                    <button class="button is-fullwidth is-info" type="submit" onclick="messageFriend(event,{{friend.id}})">Message</button>
                 </div>
             </div>
             {{/each}}

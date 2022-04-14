@@ -26,13 +26,29 @@ $('#add-user').on('click', function (event) {
 });
 
 // eslint-disable-next-line no-unused-vars
-const messageFriend = (event, id) => {
+const messageFriend = async (event, id) => {
   event.preventDefault();
 
   const userId = $('#your-user-id').val();
   const Convo = {
     users: `${userId},${id}`
   };
+
+  await $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    if (response.length === 0) {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
 
   $.ajax({
     type: 'GET',
