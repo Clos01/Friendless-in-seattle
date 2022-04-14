@@ -3,12 +3,15 @@ $('#add-user').on('click', function (event) {
 
   const newAccount = {
     firstName: $('#inputFirst').val().trim(),
-    lastName: $('#inputLast').val().trim(),
     email: $('#inputEmail').val().trim(),
-    password: $('#inputPassword').val().trim()
+    password: $('#inputPassword').val().trim(),
+    location: $('#inputLocation').val().trim(),
+    meetPreference: $('input[type=radio][name=meetPreference]:checked').val(),
+    about: $('#inputAbout').val().trim(),
+    interest_id: parseInt($('#interest_id').val())
   };
 
-  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.lastName.length > 0 && newAccount.firstName.length > 0) {
+  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
     $.ajax({
       type: 'POST',
       url: '/api/register',
@@ -22,6 +25,53 @@ $('#add-user').on('click', function (event) {
   }
 });
 
+// eslint-disable-next-line no-unused-vars
+const messageFriend = async (event, id) => {
+  event.preventDefault();
+
+  const userId = $('#your-user-id').val();
+  const Convo = {
+    users: `${userId},${id}`
+  };
+
+  await $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    if (response.length === 0) {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
+
+  $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    response.forEach(e => {
+      if (e.users === Convo.users) {
+        const ConversationId = e.id;
+        window.location.href = `/chat/${ConversationId}`;
+      } else {
+        $.ajax({
+          type: 'POST',
+          url: '/api/conversations',
+          data: Convo
+        }).then((response) => {
+          const ConversationId = response[0].ConversationId;
+          window.location.href = `/chat/${ConversationId}`;
+        });
+      }
+    });
+  });
+};
+
 $('#update-user').on('click', function (event) {
   event.preventDefault();
 
@@ -30,15 +80,18 @@ $('#update-user').on('click', function (event) {
   // capture All changes
   const changeUser = {
     firstName: $('#inputFirst').val().trim(),
-    lastName: $('#inputLast').val().trim(),
     email: $('#inputEmail').val().trim(),
-    password: $('#inputPassword').val().trim()
+    password: $('#inputPassword').val().trim(),
+    location: $('#inputLocation').val().trim(),
+    meetPreference: $('#inputMeetPreference').val().trim(),
+    about: $('#inputAbout').val().trim(),
+    interest_id: parseInt($('#interest_id').val())
   };
   $('#err-msg').empty('');
   // $('#change-user-modal').modal('show');
   console.log(changeUser);
 
-  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.lastName.length > 0 && changeUser.firstName.length > 0) {
+  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
       url: `/api/user/${id}`,
