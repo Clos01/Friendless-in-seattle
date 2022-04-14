@@ -10,9 +10,6 @@ module.exports = function (sequelize, DataTypes) {
     firstName: {
       type: DataTypes.STRING
     },
-    lastName: {
-      type: DataTypes.STRING
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,12 +22,29 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    location: {
+      type: DataTypes.STRING
+    },
+    meetPreference: {
+      type: DataTypes.STRING
+    },
+    about: {
+      type: DataTypes.STRING
+    },
+    interest_id: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'Interest',
+        key: 'id'
+      }
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   }, {
     timestamps: true,
+    underscored: true,
     hooks: {
       beforeValidate: function (user) {
         if (user.changed('password')) {
@@ -46,6 +60,21 @@ module.exports = function (sequelize, DataTypes) {
     User.hasMany(models.Example, {
       onDelete: 'cascade'
     });
+  };
+
+  User.associate = function (models) {
+    User.belongsTo(models.Interest, {
+      foreignKey: 'interest_id',
+      onDelete: 'cascade'
+    });
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Message);
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.UserToConversation);
   };
 
   // This will check if an unhashed password can be compared to the hashed password stored in our database

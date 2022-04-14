@@ -1,0 +1,29 @@
+{{> nav/nav-block user=true register=false}}
+<textarea id="your-user-id-chat" value="{{user.id}}" class="is-hidden"></textarea>
+<h4 class="has-text-info has-text-centered is-size-1">Chat</h4>
+        <section class="section">
+          <ul id="example-list" class="list-group">
+            {{#each obj.Messages as |messages|}}
+                <li data-id="{{messages.id}}" class="list-group-item textarea is-info is-light">
+                  <p>{{messages.User.first_name}}</p>
+                  <p>{{messages.createdAt}}</p>
+                  <p>{{messages.message}}</p>
+                </li>
+            {{/each}}
+          </ul>
+        </section>
+
+<hr class="m-6 has-background-grey-lighter">
+
+<section id="chatbox" class="section">
+        <div class="field">
+            <div class="control">
+              <textarea class="textarea is-info" id="message-content" class="form-control" placeholder="Post something new..."></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button id="submit-message" type="submit" class="button is-info is-light">Send</button>
+            </div>
+        </div>
+</section>
