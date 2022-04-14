@@ -50,7 +50,7 @@ TP=mysql_password
   ## Contributors
   Carlos, Eric, Leigh, Lyndsey, and Sam
   ## Questions? 
-  Carlos's Email - 
+  Carlos's Email - Cjrivas00@gmail.com
   <br>
   Eric's Email - iwmwargin@gmail.com
   <br>
