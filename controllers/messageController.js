@@ -24,7 +24,7 @@ module.exports = function (db) {
       db.Message.create({
         message: req.body.message,
         ConversationId: req.body.ConversationId,
-        UserId: req.body.UserId
+        UserId: req.session.passport.user.id
       })
         .then(dbMessageData => res.json(dbMessageData))
         .catch(err => {

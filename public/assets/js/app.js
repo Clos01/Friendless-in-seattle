@@ -25,53 +25,6 @@ $('#add-user').on('click', function (event) {
   }
 });
 
-// eslint-disable-next-line no-unused-vars
-const messageFriend = async (event, id) => {
-  event.preventDefault();
-
-  const userId = $('#your-user-id').val();
-  const Convo = {
-    users: `${userId},${id}`
-  };
-
-  await $.ajax({
-    type: 'GET',
-    url: '/api/conversations'
-  }).then((response) => {
-    if (response.length === 0) {
-      $.ajax({
-        type: 'POST',
-        url: '/api/conversations',
-        data: Convo
-      }).then((newConvo) => {
-        const ConversationId = newConvo[0].ConversationId;
-        window.location.href = `/chat/${ConversationId}`;
-      });
-    }
-  });
-
-  $.ajax({
-    type: 'GET',
-    url: '/api/conversations'
-  }).then((response) => {
-    response.forEach(e => {
-      if (e.users === Convo.users) {
-        const ConversationId = e.id;
-        window.location.href = `/chat/${ConversationId}`;
-      } else {
-        $.ajax({
-          type: 'POST',
-          url: '/api/conversations',
-          data: Convo
-        }).then((response) => {
-          const ConversationId = response[0].ConversationId;
-          window.location.href = `/chat/${ConversationId}`;
-        });
-      }
-    });
-  });
-};
-
 $('#update-user').on('click', function (event) {
   event.preventDefault();
 
@@ -104,6 +57,93 @@ $('#update-user').on('click', function (event) {
   } else {
     console.log('**Please fill out entire form**');
     $('#update-err-msg').empty('').text('**Please fill out entire form**');
+  }
+});
+
+// Make New Convo or redirect to existing convo
+// eslint-disable-next-line no-unused-vars
+const messageFriend = async (event, id) => {
+  event.preventDefault();
+
+  const userId = $('#your-user-id').val();
+  const Convo = {
+    users: `${userId},${id}`
+  };
+
+  await $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    if (response.length === 0) {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
+
+  $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    const exists = [];
+    for (let i = 0; i < response.length; i++) {
+      const reverseAllUsers = response[i].users.split('').reverse().join('');
+
+      if (response[i].users === Convo.users) {
+        exists.push('true');
+      } else if (reverseAllUsers === Convo.users) {
+        exists.push('trueReverse');
+      } else {
+        exists.push('false');
+      }
+    }
+    const doesExist = exists.includes('true');
+    const existsIndex = exists.indexOf('true');
+    const doesExistReverse = exists.includes('trueReverse');
+    const existsReverseIndex = exists.indexOf('trueReverse');
+
+    if (doesExistReverse) {
+      const ConversationId = response[existsReverseIndex].id;
+      window.location.href = `/chat/${ConversationId}`;
+    } else if (doesExist) {
+      const ConversationId = response[existsIndex].id;
+      window.location.href = `/chat/${ConversationId}`;
+    } else {
+      $.ajax({
+        type: 'POST',
+        url: '/api/conversations',
+        data: Convo
+      }).then((newConvo) => {
+        const ConversationId = newConvo[0].ConversationId;
+        window.location.href = `/chat/${ConversationId}`;
+      });
+    }
+  });
+};
+
+// Create chat message
+$('#submit-message').on('click', function (event) {
+  event.preventDefault();
+  const message = $('#message-content').val();
+  const ConversationId = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+
+  const messageData = {
+    message,
+    ConversationId
+  };
+
+  if (message) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/messages',
+      data: messageData
+    });
+    $('#message-content').val('');
   }
 });
 
