@@ -1,19 +1,42 @@
-{{> nav/nav-block}}
+    <section class="section is-medium is-flex is-justify-content-center" id="user-info">
+        <div class="columns is-flex-wrap-wrap	 is-align-items-center">
+            <div class ="column is-8 is-12-mobile">
+                <h1 class="title is-2 has-text-info">Friendless in Seattle</h1>
+                <h2 class="subtitle has-text-black">Meet new friends locally or around the world that share your interests.<h2>
+            </div>
+            <div class ="column is-12-mobile">
+                <form class="box">
+                    <div class="field">
+                      {{!-- <div class="modal-body"> --}}
+                        <div class="control">
+                          
+                          <input class="input is-medium" type="text" placeholder="Email" id="email">
 
-<div id="main-container" class="container">
-  <div class="jumbotron text-center header-wrap" align="center">
-    <p class="lead">Welcome to <strong>Sample App</strong></p>
-    <hr class="my-4">
-    <div>
-      {{#if isloggedin}}
-        You are logged in as {{user.firstName}}
-        <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-      {{else}}
-        <p>You need to log in to use this app.</p>
-      {{/if}}
-      <h5 id="login-err-msg"></h5>
-    </div>
-  </div>
-</div>
+                        </div>
+                      {{!-- </div> --}}
+                      <br>
+                      <div class="field">
+                        <div class="control">
+                          <input class="input is-medium" type="password" placeholder="Password" id="user_password">
+                        </div>
+                        <p class="help is-info has-text-centered m-5">Forgot password?</p>
+                      </div>
 
-{{> modal/login-block}}
+                      </div>
+                      
+                      <div class="field">
+                        <div class="control">
+                          <button class="button is-medium is-fullwidth is-info" id="login">Login</button>
+                        </div>
+                      </div>
+                      <hr class="m-5 has-background-grey-lighter">
+                      <div class="field">
+                        <div class="control">
+                          <button class="button is-medium is-fullwidth is-primary" href="/register" id="register" data-register={{register}}>Register</button>
+                        </div>
+                      </div>
+                  </form>
+            </div>
+        </div>
+       
+      </section>

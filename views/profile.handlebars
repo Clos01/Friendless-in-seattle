@@ -1,76 +1,117 @@
-{{> nav/nav-block user=true register=false}}
+{{> nav/nav-block user=false register=true}}
 
-<div class="container">
-  <header align="center" class="header-wrap">
-    <h3>View or update your user</h3>
-    <div class="userId">
-      {{!-- <h3>Welcome, {{userInfo.firstName}}</h3> --}}
-      {{!-- <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5> --}}
-    </div>
-    <h3 id="update-err-msg"></h3>
-  </header>
 
-  <form id="user-form">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputFirst">First Name</label>
-        <input type="text" class="form-control" id="inputFirst" value="{{userInfo.firstName}}" placeholder="John">
+<section class="section">
+    <div class="columns mt-6">
+
+
+      <div class="column is-4">
+          <figure class="image is-1by1">
+              <img src="/assets/images/avatar-1.jpg">
+          </figure>
+          <div class="buttons is-centered">
+              <button class="button is-info is-small mt-4" type="submit" id="avatar">Generate new avatar</button> 
+          </div>
       </div>
-      <div class="form-group col-md-6">
-        <label for="inputLast">Last Name</label>
-        <input type="text" class="form-control" id="inputLast" value="{{userInfo.lastName}}" placeholder="Doe">
-      </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Email</label>
-        <input type="text" class="form-control" id="inputEmail" value="{{userInfo.email}}">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" value="{{userInfo.password}}">
-      </div>
-    </div>
+      <div class="column is-8">
+          <form id="create-form">
+              
+              <div class="field is-horizontal">
+                  <div class="field-body">
 
-    <div>
-      <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-primary">Update</button>
-      {{#unless userInfo.isAdmin}}
-        <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
-      {{/unless}}
-      <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-primary">Refresh</button>
-    </div>
-  </form>
+                      <div class="field">
+                          <label class="label" for="inputFirst">Name</label>
+                          <div class="control">
+                              <input class="input" type="text" id="inputFirst" placeholder="John">
+                          </div>
+                      </div>
 
-  <div class="modal" id="delete-user-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Re-Enter Credentials to delete user</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+                      <div class="field">
+                          <label class="label" for="inputLocation">Location</label>
+                          <div class="control">
+                              <input class="input" type="text" id="inputLocation" placeholder="Wilmington">
+                          </div>
+                      </div>
 
-        <div class="modal-body">
-          <h3 id="err-msg"></h3>
-          <form>
-            <div class="form-group">
-              <label for="userEmail">Email:</label>
-              <input type="text" class="form-control" id="userEmail">
-            </div>
-            <div class="form-group">
-              <label for="userPassword">Password:</label>
-              <input type="password" class="form-control" id="userPassword">
-            </div>
+                  </div>
+              </div>
+
+              <div class="field is-horizontal">
+                  <div class="field-body">
+
+                      <div class="field">
+                          <label class="label" for="inputEmail">Email</label>
+                          <div class="control">
+                              <input class="input" type="email" id="inputEmail" placeholder="Email">
+                          </div>
+                      </div>
+
+                      <div class="field">
+                          <label class="label" for="inputPassword">Password</label>
+                          <div class="control">
+                              <input class="input" type="password" id="inputPassword" placeholder="Password">
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+              <div class="field is horizontal">
+                  <label class="label">Choose an example activity that you like to do with friends</label>
+                  <div class="field-body">
+                      <div class="field is-narrow">
+                          <div class="control">
+                              <div class="select is-fullwidth">
+                                  <select id="interest_id">
+                                      {{#each interests as |interest|}}
+                                      <option value={{interest.id}}>{{interest.interest_name}}</option>
+                                      {{/each}}
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="field is horizontal">
+                  <label class="label">Where do you want to meet friends?</label>
+                  <div class="field-body">
+                      <div class="field is-narrow">
+                          <div class="control">
+                              <label class="radio"><input type="radio" name="meetPreference" value="locally"> Locally</label>
+                              <label class="radio"><input type="radio" name="meetPreference" value="virtually"> Virtually</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="field is-horizontal">
+                  <div class="field-body">
+                      <div class="field">
+                          <label class="label">About</label>
+                          <div class="control">
+                              <textarea id="inputAbout" class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself"></textarea>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="field is-horizontal">
+                  <div class="field-body">
+                      <div class="field is-narrow">
+                          <div class="control">
+                              <button class="button is-primary mt-3 px-6" type="submit" id="add-user">Register</button> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
           </form>
-        </div>
-
-        <div class="modal-footer">
-          <button id="confirm-delete" type="button" data-id="{{userInfo.id}}" class="btn btn-primary">Confirm Delete</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
-        </div>
       </div>
+
+
+
     </div>
-  </div>
-</div>
+
+</section>
