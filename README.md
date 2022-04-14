@@ -14,7 +14,7 @@
   
 
   ## Description
-  Friendless in Seattle is a way to make friends online that share the same interests............
+  Friendless in Seattle helps you meet new friends locally or around the world that share your interests.
   ## Installation
   
   ## Languages
