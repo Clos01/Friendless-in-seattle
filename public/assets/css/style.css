@@ -1,4 +1,24 @@
+/* GLOBAL STYLES */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#chatbox {
+  position: sticky;
+  bottom: 0;
+}
+/* body {
   color: white;
   background-size: cover;
   height:100%
@@ -71,4 +91,4 @@ hr {
 
 .card-body {
   color: #444;
-}
+} */

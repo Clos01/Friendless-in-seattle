@@ -1,76 +1,141 @@
 {{> nav/nav-block user=true register=false}}
 
-<div class="container">
-  <header align="center" class="header-wrap">
-    <h3>View or update your user</h3>
-    <div class="userId">
-      {{!-- <h3>Welcome, {{userInfo.firstName}}</h3> --}}
-      {{!-- <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5> --}}
-    </div>
-    <h3 id="update-err-msg"></h3>
-  </header>
+<section class="section">
+    <div class="columns mt-6">
 
-  <form id="user-form">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputFirst">First Name</label>
-        <input type="text" class="form-control" id="inputFirst" value="{{userInfo.firstName}}" placeholder="John">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputLast">Last Name</label>
-        <input type="text" class="form-control" id="inputLast" value="{{userInfo.lastName}}" placeholder="Doe">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Email</label>
-        <input type="text" class="form-control" id="inputEmail" value="{{userInfo.email}}">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" value="{{userInfo.password}}">
-      </div>
-    </div>
-
-    <div>
-      <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-primary">Update</button>
-      {{#unless userInfo.isAdmin}}
-        <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
-      {{/unless}}
-      <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-primary">Refresh</button>
-    </div>
-  </form>
-
-  <div class="modal" id="delete-user-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Re-Enter Credentials to delete user</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="column is-4">
+            <figure class="image is-1by1">
+                <img src="https://api.multiavatar.com/{{userInfo.firstName}}.png?apikey=bkuYzM3faIrP8O">
+            </figure>
+            <div class="buttons is-centered">
+              <button class="button is-info is-light is-outlined is-small mt-4" type="submit" id="avatar">Generate new avatar</button> 
+          </div>
         </div>
 
-        <div class="modal-body">
-          <h3 id="err-msg"></h3>
-          <form>
-            <div class="form-group">
-              <label for="userEmail">Email:</label>
-              <input type="text" class="form-control" id="userEmail">
+        <div class="column is-8">
+            <form id="user-form">
+                
+                <div class="field is-horizontal">
+                    <div class="field-body">
+
+                        <div class="field">
+                            <label class="label" for="inputFirst">Name</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputFirst" value="{{userInfo.firstName}}" placeholder="John">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="inputLocation">Location</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputLocation" value="{{userInfo.location}}" placeholder="Wilmington">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+
+                        <div class="field">
+                            <label class="label" for="inputEmail">Email</label>
+                            <div class="control">
+                                <input class="input" type="text" id="inputEmail" value="{{userInfo.email}}">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="inputPassword">Password</label>
+                            <div class="control">
+                                <input class="input" type="password" id="inputPassword" value="{{userInfo.password}}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="field is horizontal">
+                    <label class="label">Choose an example activity that you like to do with friends</label>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="interest_id">
+                                    {{#each interests as |interest|}}
+                                      <option value={{interest.id}}>{{interest.interest_name}}</option>
+                                    {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is horizontal">
+                    <label class="label">Where do you want to meet friends?</label>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <label class="radio"><input type="radio" name="meetPreference" value="locally"> Locally</label>
+                              <label class="radio"><input type="radio" name="meetPreference" value="virtually"> Virtually</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">About</label>
+                            <div class="control">
+                                <textarea id="inputAbout" class="textarea" type="text" placeholder="Tell your future friends a little bit about yourself">{{userInfo.about}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-primary is-light is-outlined" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
+                            </div>
+                           {{#if userInfo.isAdmin}}
+                            <div class="control">
+                                <button class="button is-danger is-light is-outlined" type="submit" id="delete-user">Delete</button>
+                            </div>
+                            {{/if}}
+                            <div class="control">
+                                <button class="button is-warning is-light is-outlined" type="submit" id="view-user" data-id="{{userInfo.id}}">Refresh</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="modal" id="delete-user-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Confirm Delete</p>
+        </header>
+        <section class="modal-card-body">
+            <p class="mb-2">Re-Enter Credent to Delete User</p>
+            <div class="control">
+                <input class="input mb-2" type="text" id="userEmail" placeholder="Email">
             </div>
-            <div class="form-group">
-              <label for="userPassword">Password:</label>
-              <input type="password" class="form-control" id="userPassword">
+            <div class="control">
+                <input class="input" type="password" id="userPassword" placeholder="Password">
             </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button id="confirm-delete" type="button" data-id="{{userInfo.id}}" class="btn btn-primary">Confirm Delete</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
-        </div>
-      </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-danger" id="confirm-delete" type="button" data-id="{{userInfo.id}}">Confirm Delete</button>
+            <button class="button is-primary" type="button" data-dismiss="modal">Nah, I'll Stay</button>
+        </footer>
     </div>
-  </div>
 </div>

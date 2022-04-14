@@ -1,0 +1,21 @@
+{{> nav/nav-block user=true register=false}}
+
+<section class="section">
+    <input id="your-user-id" class="is-hidden" value={{user.id}}></input>
+        <p class=" is-size-4 has-text-weight-semibold mb-4">Meet All the People Who Share Your Interest! </p>
+        <div class="columns is-flex-wrap-wrap">
+            {{#each friends as |friend| }}
+            <div class="column is-3">
+                <div class="box">
+                    <p class="has-text-centered is-size-4 has-text-weight-semibold mb-4">{{friend.firstName}}</p>
+                    <p class="has-text-centered is-size-6 has-text-weight-semibold mb-4">Location:{{friend.location}}</p>
+                    <figure class="image is-1by1 mb-4">
+                <img src="https://api.multiavatar.com/{{friend.firstName}}.png?apikey=bkuYzM3faIrP8O">
+                    </figure>
+                    
+                    <button class="button is-fullwidth is-info" type="submit" onclick="messageFriend(event,{{friend.id}})">Message</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
