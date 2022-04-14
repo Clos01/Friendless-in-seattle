@@ -8,7 +8,9 @@
             <div class="column is-3">
                 <div class="box">
                     <p class="has-text-centered is-size-4 has-text-weight-semibold mb-4">{{friend.firstName}}</p>
-                    <p class="has-text-centered is-size-6 has-text-weight-semibold mb-4">Location:{{friend.location}}</p>
+                    <div class="content has-text-centered">
+                    <a href="https://www.google.com/search?q={{friend.location}}" target="blank">{{friend.location}}</a>
+                    </div>
                     <figure class="image is-1by1 mb-4">
                 <img src="https://api.multiavatar.com/{{friend.firstName}}.png?apikey=bkuYzM3faIrP8O">
                     </figure>
