@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const { Op } = require('sequelize');
 module.exports = (db) => {
   // Load register page
   router.get('/register', (req, res) => {
@@ -37,28 +37,54 @@ module.exports = (db) => {
   // Load friends page
   router.get('/friends', (req, res) => {
     if (req.isAuthenticated()) {
-      db.Friend.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbFriends) {
-        res.render('friends', {
-          userInfo: req.session.passport.user,
+      db.User.findAll({ where: {
+        firstName: {
+          [Op.ne]: req.session.passport.user.firstName
+        },
+        interest_id: req.session.passport.user.interest_id
+      },
+      raw: true }).then(function (dbUsers) {
+        const obj = {
+          user: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
-          friends: dbFriends
-        });
+          friends: dbUsers
+        };
+        res.render('friends', obj);
       });
     } else {
       res.redirect('/');
     }
   });
 
-  // Load selected friend
-  router.get('/friends/:id', (req, res) => {
+  router.get('/chat/:id', (req, res) => {
     if (req.isAuthenticated()) {
-      db.Friend.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbFriend) {
-        res.render('friend-detail', {
-          userInfo: req.session.passport.user,
-          isloggedin: req.isAuthenticated(),
-          friend: dbFriend
+      db.Conversation.findOne({
+        where: {
+          id: req.params.id
+        },
+        attributes: [
+          'id',
+          'users'
+        ],
+        include: [
+          {
+            model: db.Message,
+            attributes: ['id', 'message', 'createdAt', 'ConversationId', 'UserId'],
+            include: {
+              model: db.User,
+              attributes: ['first_name']
+            }
+          }
+        ]
+      })
+        .then(function (dbConversationData) {
+          const obj = dbConversationData.get({ plain: true });
+          res.render('chat', {
+            obj,
+            user: req.session.passport.user,
+            isloggedin: req.isAuthenticated()
+          });
         });
-      });
     } else {
       res.redirect('/');
     }

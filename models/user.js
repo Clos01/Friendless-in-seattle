@@ -44,6 +44,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   }, {
     timestamps: true,
+    underscored: true,
     hooks: {
       beforeValidate: function (user) {
         if (user.changed('password')) {
@@ -66,6 +67,14 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: 'interest_id',
       onDelete: 'cascade'
     });
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.Message);
+  };
+
+  User.associate = function (models) {
+    User.hasMany(models.UserToConversation);
   };
 
   // This will check if an unhashed password can be compared to the hashed password stored in our database
