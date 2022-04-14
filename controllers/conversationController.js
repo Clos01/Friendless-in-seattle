@@ -2,7 +2,10 @@ module.exports = function (db) {
   return {
     getAllConversations: function (req, res) {
       db.Conversation.findAll({
-
+        attributes: [
+          'id',
+          'users'
+        ]
       })
         .then(dbConversationData => res.json(dbConversationData))
         .catch(err => {
@@ -15,7 +18,21 @@ module.exports = function (db) {
       db.Conversation.findOne({
         where: {
           id: req.params.id
-        }
+        },
+        attributes: [
+          'id',
+          'users'
+        ],
+        include: [
+          {
+            model: db.Message,
+            attributes: ['id', 'message', 'createdAt', 'ConversationId', 'UserId'],
+            include: {
+              model: db.User,
+              attributes: ['first_name']
+            }
+          }
+        ]
       })
         .then(dbConversationData => res.json(dbConversationData))
         .catch(err => {

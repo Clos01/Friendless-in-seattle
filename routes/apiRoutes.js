@@ -29,7 +29,7 @@ module.exports = (passport, db) => {
   router.delete('/interests/:id', InterestController.deleteInterest);
 
   // Conversations
-  router.get('/conversations');
+  router.get('/conversations', ConversationController.getAllConversations);
   router.get('/conversations/:id', ConversationController.getConversationsbyId);
   router.post('/conversations', ConversationController.createConversation);
   router.delete('/conversations/:id');
@@ -37,8 +37,8 @@ module.exports = (passport, db) => {
   // Messages
   router.get('/messages', MessageController.getAllMessages);
   router.get('/messages/:id');
-  router.post('/messages');
-  router.delete('/messages/:id');
+  router.post('/messages', MessageController.createMessage);
+  router.delete('/messages/:id', MessageController.deleteMessage);
 
   return router;
 };

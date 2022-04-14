@@ -25,6 +25,37 @@ $('#add-user').on('click', function (event) {
   }
 });
 
+// eslint-disable-next-line no-unused-vars
+const messageFriend = (event, id) => {
+  event.preventDefault();
+
+  const userId = $('#your-user-id').val();
+  const Convo = {
+    users: `${userId},${id}`
+  };
+
+  $.ajax({
+    type: 'GET',
+    url: '/api/conversations'
+  }).then((response) => {
+    response.forEach(e => {
+      if (e.users === Convo.users) {
+        const ConversationId = e.id;
+        window.location.href = `/chat/${ConversationId}`;
+      } else {
+        $.ajax({
+          type: 'POST',
+          url: '/api/conversations',
+          data: Convo
+        }).then((response) => {
+          const ConversationId = response[0].ConversationId;
+          window.location.href = `/chat/${ConversationId}`;
+        });
+      }
+    });
+  });
+};
+
 $('#update-user').on('click', function (event) {
   event.preventDefault();
 

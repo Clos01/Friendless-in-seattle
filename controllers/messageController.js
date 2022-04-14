@@ -22,7 +22,9 @@ module.exports = function (db) {
     },
     createMessage: function (req, res) {
       db.Message.create({
-
+        message: req.body.message,
+        ConversationId: req.body.ConversationId,
+        UserId: req.body.UserId
       })
         .then(dbMessageData => res.json(dbMessageData))
         .catch(err => {
@@ -32,7 +34,9 @@ module.exports = function (db) {
     },
     deleteMessage: function (req, res) {
       db.Message.destroy({
-
+        where: {
+          id: req.params.id
+        }
       })
         .then(dbMessageData => {
           if (!dbMessageData) {
