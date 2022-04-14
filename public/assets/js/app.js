@@ -36,7 +36,7 @@ $('#update-user').on('click', function (event) {
     email: $('#inputEmail').val().trim(),
     password: $('#inputPassword').val().trim(),
     location: $('#inputLocation').val().trim(),
-    meetPreference: $('#inputMeetPreference').val().trim(),
+    meetPreference: $('input[type=radio][name=meetPreference]:checked').val(),
     about: $('#inputAbout').val().trim(),
     interest_id: parseInt($('#interest_id').val())
   };
@@ -44,7 +44,7 @@ $('#update-user').on('click', function (event) {
   // $('#change-user-modal').modal('show');
   console.log(changeUser);
 
-  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.password.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
+  if (changeUser.email.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
       url: `/api/user/${id}`,
@@ -146,26 +146,19 @@ $('#submit-message').on('click', function (event) {
     $('#message-content').val('');
   }
 });
-
 // DELETE   ***************************************************
 $('#delete-user').on('click', function (event) {
   event.preventDefault();
   $('#err-msg').empty('');
-  $('#delete-user-modal').addClass('is-active');
+  $('#delete-user-modal').modal('show');
 });
-
 $('#confirm-delete').on('click', function (event) {
   event.preventDefault();
-
-  $('#delete-user-modal').removeClass('is-active');
-
   const id = $(this).data('id');
-
   const deleteUser = {
     email: $('#userEmail').val().trim(),
     password: $('#userPassword').val().trim()
   };
-
   if (deleteUser.email.length > 0 && deleteUser.password.length > 0) {
     $.ajax({
       type: 'POST',
@@ -189,30 +182,24 @@ $('#confirm-delete').on('click', function (event) {
     $('#err-msg').empty('').text('fill out entire form');
   }
 });
-
 $('#register').on('click', function (event) {
   event.preventDefault();
   window.location.href = '/register';
 });
-
 $('#login-modal').on('click', function (event) {
   event.preventDefault();
   $('#user-info').modal('show');
 });
-
 $('#go-home').on('click', function (event) {
   event.preventDefault();
   window.location.href = '/';
 });
-
 $('#login').on('click', function (event) {
   event.preventDefault();
-
   const user = {
     email: $('#email').val().trim(),
     password: $('#user_password').val().trim()
   };
-
   $.post('/api/login', user, (result) => {
     // console.log(result);
     if (result.loggedIn) {

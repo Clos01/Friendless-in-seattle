@@ -10,7 +10,7 @@
                     <p class="has-text-centered is-size-4 has-text-weight-semibold mb-4">{{friend.firstName}}</p>
                     <p class="has-text-centered is-size-6 has-text-weight-semibold mb-4">Location:{{friend.location}}</p>
                     <figure class="image is-1by1 mb-4">
-                        <img  class="is-rounded" src="images/avatar-2.png" alt="Placeholder image">
+                <img src="https://api.multiavatar.com/{{friend.firstName}}.png?apikey=bkuYzM3faIrP8O">
                     </figure>
                     
                     <button class="button is-fullwidth is-info" type="submit" onclick="messageFriend(event,{{friend.id}})">Message</button>
