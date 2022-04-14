@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS friendless;
+DROP DATABASE IF EXISTS project2_dev;
 
-CREATE DATABASE  friendless;
+CREATE DATABASE  project2_dev;
