@@ -152,6 +152,13 @@ $('#delete-user').on('click', function (event) {
   $('#err-msg').empty('');
   $('#delete-user-modal').modal('show');
 });
+
+$("#stay").on("click", function (event) {
+  event.preventDefault();
+
+  $('#delete-user-modal').removeClass('is-active');
+});
+
 $('#confirm-delete').on('click', function (event) {
   event.preventDefault();
   const id = $(this).data('id');
