@@ -100,12 +100,10 @@
                         <div class="field is-grouped">
                             <div class="control">
                                 <button class="button is-primary is-light is-outlined" type="submit" id="update-user" data-id="{{userInfo.id}}">Update</button> 
-                                {{#unless userInfo.isAdmin}}
                             </div>
                            {{#if userInfo.isAdmin}}
                             <div class="control">
                                 <button class="button is-danger is-light is-outlined" type="submit" id="delete-user">Delete</button>
-                                {{/unless}}
                             </div>
                             {{/if}}
                             <div class="control">

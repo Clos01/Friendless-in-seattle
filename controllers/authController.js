@@ -4,6 +4,7 @@ module.exports = (passport, db) => {
       if (!req.body.email || !req.body.password) {
         return res.json({ message: 'Email and Password required!' });
       }
+
       db.User.sync().then(() => {
         const newUser = {
           email: req.body.email,
@@ -14,6 +15,7 @@ module.exports = (passport, db) => {
           about: req.body.about,
           interest_id: req.body.interest_id
         };
+
         return db.User.create(newUser).then(() => {
           res.status(200).json({ message: 'Registered successfully.' });
         });
@@ -69,6 +71,7 @@ module.exports = (passport, db) => {
     confirmAuth: (req, res) => {
       const email = req.body.email;
       const pwd = req.body.password;
+
       db.User.findOne({
         where: { email: email }
       }).then((user) => {
