@@ -57,15 +57,6 @@ db.sequelize.sync(syncOptions).then(() => {
     require('./db/seed')(db);
   }
 
-async function checkdb(){
-  try {
-    await db.sequelize.authenticate();
-    console.log('database connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-
-} 
 checkdb();
 
   app.listen(PORT, () => {
@@ -73,7 +64,4 @@ checkdb();
   });
 });
 
-
 module.exports = app;
-
-
