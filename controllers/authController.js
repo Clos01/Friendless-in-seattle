@@ -7,9 +7,9 @@ module.exports = (passport, db) => {
 
       db.User.sync().then(() => {
         const newUser = {
+          firstName: req.body.firstName,
           email: req.body.email,
           password: req.body.password,
-          firstName: req.body.firstName,
           location: req.body.location,
           meetPreference: req.body.meetPreference,
           about: req.body.about,
