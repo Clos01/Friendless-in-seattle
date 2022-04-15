@@ -9,7 +9,6 @@ const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./models');
-const sequelize = require('./config/config')
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -56,8 +55,6 @@ db.sequelize.sync(syncOptions).then(() => {
   if (app.get('env') !== 'test' && syncOptions.force) {
     require('./db/seed')(db);
   }
-
-checkdb();
 
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
