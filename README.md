@@ -14,7 +14,7 @@
   
 
   ## Description
-  Friendless in Seattle is a way to make friends online that share the same interests............
+  Friendless in Seattle helps you meet new friends locally or around the world that share your interests.
   ## Installation
   
   ## Languages
@@ -47,8 +47,13 @@ FORCE_SYNC=true_or_false
 TU=mysql_user
 TP=mysql_password
 ```
-  ## Contributors
-  Carlos, Eric, Leigh, Lyndsey, and Sam
+  ## Contributors and Their Github Links
+  ||
+[Carlos's Github](https://github.com/Clos01) ||
+[Eric's Github](https://github.com/iwmwargin) ||
+[Leigh's Github](https://github.com/leigh-pfeiffer) ||
+[Lyndsey's Github](https://github.com/lyndsclev) ||
+[Sam's Github](https://github.com/Sam-Clark1) ||
   ## Questions? 
   Carlos's Email - Cjrivas00@gmail.com
   <br>
@@ -60,13 +65,6 @@ TP=mysql_password
   <br>
   Sam's Email - 
   <br>
-  ## Github
-||
-[Carlos's Github](https://github.com/Clos01) ||
-[Eric's Github](https://github.com/iwmwargin) ||
-[Leigh's Github](https://github.com/leigh-pfeiffer) ||
-[Lyndsey's Github](https://github.com/lyndsclev) ||
-[Sam's Github](https://github.com/Sam-Clark1) ||
 
   ## License
   This project is licensed under the MIT. Please see https://opensource.org/licenses/MIT for more details.  

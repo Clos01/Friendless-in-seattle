@@ -50,11 +50,11 @@ if (app.get('env') === 'test') {
   syncOptions.force = true;
 }
 
-
 db.sequelize.sync(syncOptions).then(() => {
-  if (app.get('env') !== 'test' && syncOptions.force) {
-    require('./db/seed')(db);
-  }
+  // if (app.get('env') !== 'test' && syncOptions.force) {
+    
+  // }
+  require('./db/seed')(db);
 
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
