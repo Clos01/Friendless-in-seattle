@@ -45,13 +45,20 @@
   https://friendless-in-seattle.herokuapp.com/
   
   ## Photos
-  Image of Login
+  **_Image of Login_**:
+  <br>
   <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/Login.png">
-  Image of Friends Page
+  <br>
+  _**Image of Friends Page**_:
+  <br>
   <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/Friends.png">
-  Image of Profile Page
+  <br>
+  _**Image of Profile Page**_:
+  <br>
   <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/Profile.png">
-  Image of Messages Page
+  <br>
+  _**Image of Messages Page**_:
+  <br>
   <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/Messages.png">
   
   
