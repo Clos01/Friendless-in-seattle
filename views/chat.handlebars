@@ -1,29 +1,37 @@
 {{> nav/nav-block user=true register=false}}
 <textarea id="your-user-id-chat" value="{{user.id}}" class="is-hidden"></textarea>
-<h4 class="has-text-info has-text-centered is-size-1">Chat</h4>
-        <section class="section">
-          <ul id="example-list" class="list-group">
-            {{#each obj.Messages as |messages|}}
-                <li data-id="{{messages.id}}" class="list-group-item textarea is-info is-light">
-                  <p>{{messages.User.first_name}}</p>
-                  <p>{{messages.createdAt}}</p>
-                  <p>{{messages.message}}</p>
-                </li>
-            {{/each}}
-          </ul>
-        </section>
 
-<hr class="m-6 has-background-grey-lighter">
 
-<section id="chatbox" class="section">
-        <div class="field">
-            <div class="control">
-              <textarea class="textarea is-info" id="message-content" class="form-control" placeholder="Post something new..."></textarea>
-            </div>
-        </div>
-        <div class="field">
-            <div class="control">
-                <button id="submit-message" type="submit" class="button is-info is-light">Send</button>
-            </div>
-        </div>
+  <div class="content mt-6">
+    <p class="has-text-centered has-text-info has-text-weight-semibold is-size-3">
+      Messages with {{user.id}}
+    </p>
+  </div>
+
+<section class="section p-6 m-6 has-background-primary-light">
+  <div class="box">
+    <ul id="example-list" class="list-group">
+      {{#each obj.Messages as |messages|}}
+      <li data-id="{{messages.id}}" class="list-group-item">
+        <p class="has-text-is-black-bis">{{messages.message}}</p>
+        <p class="has-text-grey is-italic is-size-7 mt-1"> - <span class="has-text-weight-semibold">{{messages.User.first_name}}</span>, {{messages.createdAt}}</p>
+        <br>
+        <br>
+      </li>
+        {{/each}}
+    </ul>
+  </div>
+
+  <div id="chatbox">
+    <div class="field is-grouped is-horizontal mt-6">
+      <div class="control is-expanded">
+        <input class="input" type="text" id="message-content" placeholder="Type your message here">
+      </div>
+      <div class="control">
+        <a class="button is-info" id="submit-message" type="submit">Send</a>
+      </div>
+    </div>
+  </div>
 </section>
+
+
