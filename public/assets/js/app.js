@@ -44,7 +44,7 @@ $('#update-user').on('click', function (event) {
   // $('#change-user-modal').modal('show');
   console.log(changeUser);
 
-  if (changeUser.email.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
+  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
       url: `/api/user/${id}`,

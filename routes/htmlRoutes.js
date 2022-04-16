@@ -58,16 +58,36 @@ module.exports = (db) => {
 
   router.get('/chat/:id', (req, res) => {
     if (req.isAuthenticated()) {
-      db.Conversation.findOne({
-        where: {
-          id: req.params.id
+      // db.Conversation.findOne({
+      //   where: {
+      //     id: req.params.id
+      //   },
+      //   attributes: [
+      //     'id',
+      //     'users'
+      //   ],
+      //   include: [
+      //     {
+      //       model: db.Message,
+      //       attributes: ['id', 'message', 'createdAt', 'ConversationId', 'UserId'],
+      //       include: {
+      //         model: db.User,
+      //         attributes: ['first_name']
+      //       }
+      //     }
+      //   ]
+      // })
+      db.User.findAll({ where: {
+        firstName: {
+          [Op.ne]: req.session.passport.user.firstName
         },
-        attributes: [
-          'id',
-          'users'
-        ],
-        include: [
-          {
+        interest_id: req.session.passport.user.interest_id
+      },
+      include: [
+        {
+          model: db.Conversation,
+          attributes: ['id','users'],
+          include: {
             model: db.Message,
             attributes: ['id', 'message', 'createdAt', 'ConversationId', 'UserId'],
             include: {
@@ -75,11 +95,12 @@ module.exports = (db) => {
               attributes: ['first_name']
             }
           }
-        ]
+        }
+      ]
       })
         .then(function (dbConversationData) {
           const obj = dbConversationData.get({ plain: true });
-          res.render('chat', {
+          res.render('example', {
             obj,
             user: req.session.passport.user,
             isloggedin: req.isAuthenticated()
@@ -89,7 +110,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
-
+  
   // Load dashboard page
   router.get('/', (req, res) => {
     if (req.isAuthenticated()) {

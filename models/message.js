@@ -17,11 +17,11 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   Message.associate = function (models) {
-    Message.belongsTo(models.Conversation);
-  };
+    Message.belongsTo(models.User);
+  }; //switched
 
   Message.associate = function (models) {
-    Message.belongsTo(models.User);
+    Message.belongsTo(models.Conversation);
   };
 
   Message.prototype.toJSON = function () {
