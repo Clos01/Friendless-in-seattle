@@ -52,7 +52,7 @@ if (app.get('env') === 'test') {
   syncOptions.force = true;
 }
 
-db.sequelize.sync(syncOptions).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   // if (app.get('env') !== 'test' && syncOptions.force) {
     
   // }
