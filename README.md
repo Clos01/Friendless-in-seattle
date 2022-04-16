@@ -46,13 +46,13 @@
   
   ## Photos
   Image of Login
-  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Terminal.png">
+  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Login.png">
   Image of Friends Page
-  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Terminal.png">
+  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Friends.png">
   Image of Profile Page
-  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Terminal.png">
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/Profile.png">
   Image of Messages Page
-  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Terminal.png">
+  <img src="https://github.com/iwmwargin/readme-creator/blob/main/assets/Messages.png">
   
   
   ## Requirements
