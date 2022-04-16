@@ -61,9 +61,9 @@ TP=mysql_password
   <br>
   Leigh's Email - leigh.pfeiffer@gmail.com
   <br>
-  Lyndsey's Email - 
+  Lyndsey's Email - Lyndsclev@gmail.com
   <br>
-  Sam's Email - 
+  Sam's Email - samclark2399@gmail.com
   <br>
 
   ## License
