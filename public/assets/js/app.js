@@ -213,7 +213,13 @@ $('#login').on('click', function (event) {
       $(document.location).attr('href', '/example');
     } else {
       $('#login-err-msg').empty('').text(result.error);
-      $('#user-info').modal('hide');
+      $('#error-login').addClass('is-active');
     }
   });
+});
+
+$("#retry-login").on("click", function (event) {
+  event.preventDefault();
+
+  $('#error-login').removeClass('is-active');
 });
