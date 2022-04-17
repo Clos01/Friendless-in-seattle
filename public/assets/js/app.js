@@ -11,7 +11,7 @@ $('#add-user').on('click', function (event) {
     interest_id: parseInt($('#interest_id').val())
   };
 
-  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
+  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
     $.ajax({
       type: 'POST',
       url: '/api/register',
