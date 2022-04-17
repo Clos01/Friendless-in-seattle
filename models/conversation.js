@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
   }
   );
 
-  Conversation.associate = function (models) {
+Conversation.associate = function (models) {
     Conversation.hasMany(models.UserToConversation);
   };
 

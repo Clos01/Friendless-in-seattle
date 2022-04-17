@@ -6,22 +6,6 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true,
       allowNull: false
     }
-    // conversation_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: 'Conversations',
-    //     key: 'id'
-    //   }
-    // },
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: 'Users',
-    //     key: 'id'
-    //   }
-    // }
   },
   {
     timeStamps: false

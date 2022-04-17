@@ -11,7 +11,7 @@ $('#add-user').on('click', function (event) {
     interest_id: parseInt($('#interest_id').val())
   };
 
-  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.password.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
+  if (newAccount.password.length > 0 && newAccount.email.length > 0 && newAccount.firstName.length > 0 && newAccount.location.length > 0 && newAccount.meetPreference.length > 0 && newAccount.about.length > 0) {
     $.ajax({
       type: 'POST',
       url: '/api/register',
@@ -44,7 +44,7 @@ $('#update-user').on('click', function (event) {
   // $('#change-user-modal').modal('show');
   console.log(changeUser);
 
-  if (changeUser.email.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
+  if (changeUser.password.length > 0 && changeUser.email.length > 0 && changeUser.firstName.length > 0 && changeUser.location.length > 0 && changeUser.meetPreference.length > 0 && changeUser.about.length > 0) {
     $.ajax({
       type: 'PUT',
       url: `/api/user/${id}`,
@@ -127,7 +127,7 @@ const messageFriend = async (event, id) => {
 };
 
 // Create chat message
-$('#submit-message').on('click', function (event) {
+$('#submit-message').on('click', async function (event) {
   event.preventDefault();
   const message = $('#message-content').val();
   const ConversationId = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
@@ -138,12 +138,23 @@ $('#submit-message').on('click', function (event) {
   };
 
   if (message) {
-    $.ajax({
-      type: 'POST',
-      url: '/api/messages',
-      data: messageData
+    const response = await fetch('/api/messages', {
+      method: 'POST',
+      body: JSON.stringify({
+        message,
+        ConversationId
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
-    $('#message-content').val('');
+
+    if (response.ok) {
+      document.location.reload();
+      $('#message-content').val('');
+    } else {
+      alert(response.statusText);
+    }
   }
 });
 // DELETE   ***************************************************
