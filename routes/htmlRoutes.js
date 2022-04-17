@@ -89,7 +89,7 @@ module.exports = (db) => {
       res.redirect('/');
     }
   });
-
+  
   // Load dashboard page
   router.get('/', (req, res) => {
     if (req.isAuthenticated()) {

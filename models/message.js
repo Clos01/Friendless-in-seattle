@@ -6,10 +6,6 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true,
       allowNull: false
     },
-    // currentChatReceiverId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false
-    // },
     message: {
       type: DataTypes.STRING
     }
@@ -22,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
 
   Message.associate = function (models) {
     Message.belongsTo(models.User);
-  };
+  }; 
 
   Message.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
