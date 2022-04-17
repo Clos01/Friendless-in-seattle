@@ -127,7 +127,7 @@ const messageFriend = async (event, id) => {
 };
 
 // Create chat message
-$('#submit-message').on('click', function (event) {
+$('#submit-message').on('click', async function (event) {
   event.preventDefault();
   const message = $('#message-content').val();
   const ConversationId = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
@@ -138,12 +138,23 @@ $('#submit-message').on('click', function (event) {
   };
 
   if (message) {
-    $.ajax({
-      type: 'POST',
-      url: '/api/messages',
-      data: messageData
+    const response = await fetch('/api/messages', {
+      method: 'POST',
+      body: JSON.stringify({
+        message,
+        ConversationId
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
-    $('#message-content').val('');
+
+    if (response.ok) {
+      document.location.reload();
+      $('#message-content').val('');
+    } else {
+      alert(response.statusText);
+    }
   }
 });
 // DELETE   ***************************************************
