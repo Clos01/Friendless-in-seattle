@@ -47,19 +47,19 @@
   ## Photos
   **_Image of Login_**:
   <br>
-  <img src="https://github.com/Clos01/Friendless-in-seattle/tree/main/README-images/Login.png">
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Login.png">
   <br>
   _**Image of Friends Page**_:
   <br>
-  <img src="https://github.com/Clos01/Friendless-in-seattle/tree/main/README-images/Friends.png">
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Friends.png">
   <br>
   _**Image of Profile Page**_:
   <br>
-  <img src="https://github.com/Clos01/Friendless-in-seattle/tree/main/README-images/Profile.png">
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Profile.png">
   <br>
   _**Image of Messages Page**_:
   <br>
-  <img src="https://github.com/Clos01/Friendless-in-seattle/tree/main/README-images/Messages.png">
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Messages.png">
   
   
   ## Requirements
