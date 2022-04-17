@@ -11,13 +11,13 @@ module.exports = function (sequelize, DataTypes) {
     timeStamps: false
   });
 
-  UserToConversation.associate = function (models) {
-    UserToConversation.belongsTo(models.User);
-  };
+  // UserToConversation.associate = function (models) {
+  //   UserToConversation.belongsTo(models.User);
+  // };
 
-  UserToConversation.associate = function (models) {
-    UserToConversation.belongsTo(models.Conversation);
-  };
+  // UserToConversation.associate = function (models) {
+  //   UserToConversation.belongsTo(models.Conversation);
+  // };
 
   UserToConversation.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
