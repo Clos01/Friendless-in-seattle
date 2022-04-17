@@ -1,4 +1,5 @@
-module.exports = (db) => {
+const db = require('../models');
+
   db.User.create({
     firstName: 'Admin',
     email: 'admin',
@@ -27,4 +28,3 @@ module.exports = (db) => {
       });
     });
   });
-};

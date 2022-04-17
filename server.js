@@ -9,7 +9,9 @@ const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./models');
+const cors = require('cors');
 
+app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -50,11 +52,11 @@ if (app.get('env') === 'test') {
   syncOptions.force = true;
 }
 
-db.sequelize.sync(syncOptions).then(() => {
-  if (app.get('env') !== 'test' && syncOptions.force) {
-    require('./db/seed')(db);
-  }
-
+db.sequelize.sync({force: true}).then(() => {
+  // if (app.get('env') !== 'test' && syncOptions.force) {
+   // require('./db/seed')(db);
+  // }
+  
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
   });
