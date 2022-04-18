@@ -3,19 +3,33 @@
   # Friendless in Seattle
   ## Table of Contents
   * [Description](#description)
-  * [Installation](#installation)
+  * [User Story](#user-story)
   * [Languages](#languages)
-  * [Usage](#usage)
   * [Link to URL](#live-url-link)
-  * [Contributors](#contributors)
+  * [Photos](#photos)
+  * [Contributors](#contributors-and-their-github-links)
   * [Requirements](#requirements)
   * [Questions](#questions)
   * [License](#license)
   
 
   ## Description
+  Pandemic life has meant a lot of changes for many, including moving to a new town or city.
+  Between lockdowns, working remotely, and masks, how do you organically make new friends in your new environment? 
+  Well, you don’t. You’re Friendless in Seattle. 
+  Our app helps you connect locally or remotely with people that share your interests so that you can make a new friend… or seven! 
+
   Friendless in Seattle helps you meet new friends locally or around the world that share your interests.
-  ## Installation
+  
+  ## User Story
+  ``` md
+  If I register and fill out my ‘profile’ and choose to meet virtual or local friends and choose an interest category, 
+  then when others are selecting the same criteria it will populate my friends page. 
+  If I select “message” on a friend in my friends page, 
+  then I am taken to a page that contains messages between myself and just that friend. 
+  When I view the messages page, I am presented with messages that I have open.
+  ```
+  
   
   ## Languages
    ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -29,7 +43,23 @@
 
   ## Live URL Link
   https://friendless-in-seattle.herokuapp.com/
-  ## Usage
+  
+  ## Photos
+  **_Image of Login_**:
+  <br>
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Login.png">
+  <br>
+  _**Image of Friends Page**_:
+  <br>
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Friends.png">
+  <br>
+  _**Image of Profile Page**_:
+  <br>
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Profile.png">
+  <br>
+  _**Image of Messages Page**_:
+  <br>
+  <img src="https://github.com/Clos01/Friendless-in-seattle/blob/main/README-images/Messages.png">
   
   
   ## Requirements
@@ -61,9 +91,9 @@ TP=mysql_password
   <br>
   Leigh's Email - leigh.pfeiffer@gmail.com
   <br>
-  Lyndsey's Email - 
+  Lyndsey's Email - Lyndsclev@gmail.com
   <br>
-  Sam's Email - 
+  Sam's Email - samclark2399@gmail.com
   <br>
 
   ## License

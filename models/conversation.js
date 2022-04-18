@@ -15,12 +15,14 @@ module.exports = function (sequelize, DataTypes) {
   );
 
 Conversation.associate = function (models) {
-    Conversation.hasMany(models.UserToConversation);
-  };
+  Conversation.belongsToMany(models.User, {
+    through: models.UserToConversation
+  })
+};
 
-  Conversation.associate = function (models) {
-    Conversation.hasMany(models.Message);
-  };
+Conversation.associate = function (models) {
+  Conversation.hasMany(models.Message);
+};
 
   Conversation.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());

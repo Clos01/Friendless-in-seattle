@@ -9,11 +9,14 @@ const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./models');
+const helpers = require('./middlewares/helpers');
+const hbs = exphbs.create({ helpers });
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+
+app.engine('handlebars', hbs.engine, exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 if (app.get('env') !== 'test') {
@@ -52,9 +55,9 @@ if (app.get('env') === 'test') {
 
 db.sequelize.sync(syncOptions).then(() => {
   if (app.get('env') !== 'test' && syncOptions.force) {
-    require('./db/seed')(db);
+   require('./db/seed')(db);
   }
-
+  
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
   });
