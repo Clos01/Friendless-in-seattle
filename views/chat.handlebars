@@ -1,10 +1,9 @@
 {{> nav/nav-block user=true register=false}}
 <textarea id="your-user-id-chat" value="{{user.id}}" class="is-hidden"></textarea>
 
-
   <div class="content mt-6">
     <p class="has-text-centered has-text-info has-text-weight-semibold is-size-3">
-      Messages with {{user.first_name}}
+      Messages
     </p>
   </div>
 
@@ -14,7 +13,7 @@
       {{#each obj.Messages as |messages|}}
       <li data-id="{{messages.id}}" class="list-group-item">
         <p class="has-text-is-black-bis">{{messages.message}}</p>
-        <p class="has-text-grey is-italic is-size-7 mt-1"> - <span class="has-text-weight-semibold">{{messages.User.first_name}}</span>, {{messages.createdAt}}</p>
+        <p class="has-text-grey is-italic is-size-7 mt-1"> - <span class="has-text-weight-semibold">{{messages.User.first_name}}</span>, {{format_date messages.createdAt}}</p>
         <br>
         <br>
       </li>
@@ -33,5 +32,3 @@
     </div>
   </div>
 </section>
-
-
