@@ -4,7 +4,7 @@ const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')(db);
-  const UserController = require('../controllers/userController')(db)
+  const UserController = require('../controllers/userController')(db);
   const InterestController = require('../controllers/interestController')(db);
   const ConversationController = require('../controllers/conversationController')(db);
   const MessageController = require('../controllers/messageController')(db);

@@ -14,21 +14,11 @@ module.exports = function (sequelize, DataTypes) {
   }
   );
 
-// Conversation.associate = function (models) {
-//     Conversation.hasMany(models.UserToConversation);
-//   };
-
 Conversation.associate = function (models) {
   Conversation.belongsToMany(models.User, {
     through: models.UserToConversation
   })
 };
-
-// Conversation.associate = function (models) {
-//   Conversation.belongsToMany(models.User, {
-//     through: models.Message
-//   })
-// };
 
 Conversation.associate = function (models) {
   Conversation.hasMany(models.Message);
