@@ -132,11 +132,6 @@ $('#submit-message').on('click', async function (event) {
   const message = $('#message-content').val();
   const ConversationId = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
-  const messageData = {
-    message,
-    ConversationId
-  };
-
   if (message) {
     const response = await fetch('/api/messages', {
       method: 'POST',
@@ -221,7 +216,7 @@ $('#login').on('click', function (event) {
   $.post('/api/login', user, (result) => {
     // console.log(result);
     if (result.loggedIn) {
-      $(document.location).attr('href', '/example');
+      $(document.location).attr('href', '/friends');
     } else {
       $('#login-err-msg').empty('').text(result.error);
       $('#error-login').addClass('is-active');
